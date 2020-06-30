@@ -48,31 +48,61 @@ class Main {
 
   //IMPLEMENT
 
-  public ListNode addTwoNumbers(ListNode n1, ListNode n2) {
-    //dummy nodes
-    ListNode tempN1 = n1;
-    ListNode tempN2 = n2;
-    ListNode dummyHead = new ListNode(0);
-    Listnode current = dummyHead;
-    int carry = 0;
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //dummy nodes
+        ListNode tempN1 = l1;
+        ListNode tempN2 = l2;
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+        int carry = 0;
 
-    while (tempN1 != null || tempN2 != null) {
-      int tempSum = tempN1.val + tempN2.val + carry;
-      if (tempSum > 9) {
-        resultHead = tempSum % 10;
-        carry = tempSum / 10;
-      } else {
-        resultHead = tempSum;
-        carry = 0;
-      }
-      tempN1 = tempN1.next;
-      tempN2 = tempN2.next;
+        while (tempN1 != null || tempN2 != null) {
+            int x = 0;
+            if (tempN1 != null) {
+                x = tempN1.val;
+            }
+            int y = 0;
+            if (tempN2 != null) {
+                y = tempN2.val;
+            }
+            int tempSum = x + y + carry;
+            if (tempSum > 9) {
+                current.next =  new ListNode(tempSum % 10);
+                carry = tempSum / 10;
+            } else {
+                current.next = new ListNode(tempSum);
+                carry = 0;
+            }
+            current = current.next;
+            if (tempN1 != null) {
+                tempN1 = tempN1.next;
+            }
+
+            if (tempN2 != null) {
+                tempN2 = tempN2.next;
+            } 
+
+        }
+        if (carry > 0) {
+            current.next =  new ListNode(carry);
+        }
+      return dummyHead.next;
     }
 
-  
 
-  return dummyHead.next;
-  }
+
+
+
 
 
 }
