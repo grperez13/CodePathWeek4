@@ -105,4 +105,79 @@ class Main {
 
 
 
+
+//Problem 2 Remove Nth Node from End of List
+//UNDERSTAND:
+//returning given list but minus the nth to the last node
+//time/space constraints? assume none for now
+//assume list is unsorted
+//assume n is valid
+//sample input/output: 
+//1->2->3 , n = 1
+//get length? 3 - 1 = 2;
+
+
+
+
+
+//1->9->11->18->24, n = 3
+//length = 5
+//5-3 = 2
+
+ 
+//1, n = 1
+//length = 1;
+//1 -1 = 0;
+
+//method stub:
+//public ListNode removeNthAway(ListNode head, int n) {}
+
+
+
+
+
+
+//MATCH:
+//multiple pass? trying it with this
+//dummy head?
+//two pointers?
+
+//PLAN:
+//go through and calculate length of linkedlist.
+//subtract n from length to get node to remove.
+//requires two passes of the list. 
+
+//IMPLEMENT:
+
+public ListNode removeNthAway(ListNode head, int n) {
+  //create dummy head
+  ListNode temp = head;
+  int length = 0;
+  //first pass to get length
+
+  //call a helper method
+  length = getLength(temp);
+  int positionToRemove = length - n;  //5 - 3 = 2
+  int nodeCounter = 0;
+
+  while (temp != null) {
+      if (nodeCounter == positionToRemove - 1) {
+          temp.next = temp.next.next;
+      } 
+      nodeCounter++;
+      temp = temp.next;
+  }
+
+
+}
+
+public int getLength(ListNode temp) {
+  while (temp != null) {
+    length++;
+    temp = temp.next;
+  }
+  return length;
+}
+
+
 }
